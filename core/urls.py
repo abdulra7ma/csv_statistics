@@ -17,7 +17,7 @@ urlpatterns = [
         "admin/doc/",
         include("django.contrib.admindocs.urls"),
     ),
-    path("api/v1/self-service/", include(api_urlpatterns)),
+    path("api/v1/", include(api_urlpatterns)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # activate swagger urls

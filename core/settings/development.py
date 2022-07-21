@@ -1,17 +1,17 @@
-# Python imports
 from datetime import datetime
 from os.path import join
 
-# external imports
-from decouple import config
-
 from .common import *
+
+from .environment import env
+
+
 
 # uncomment the following line to include i18n
 # from .i18n import *
 
 # ##### DEBUG CONFIGURATION ###############################
-DEBUG = config("DEBUG", default=False, cast=bool)
+DEBUG = env.bool("DEBUG", default=False)
 
 # allow all hosts during development
 ALLOWED_HOSTS = ["*"]
@@ -35,7 +35,6 @@ DATABASES = {
 INSTALLED_APPS = DEFAULT_APPS
 
 
-
 # ##### CORS CONFIGURATION ############################
 # CORS_ORIGIN_ALLOW_ALL = False
 # CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)
@@ -49,8 +48,6 @@ INSTALLED_APPS = DEFAULT_APPS
 # CELERY_RESULT_SERIALIZER = "json"
 # CELERY_TIMEZONE = "Asia/Bishkek"
 # CELERY_IMPORTS = ("apps.app.workers.tasks",)
-
-
 
 
 # #####  DJANGO LOGGING CONFIGURATION############################

@@ -16,6 +16,11 @@ numpy = "*"
 django = "==4.0.6"
 django-extensions = "*"
 werkzeug = "*"
+pandas = "*"
+django-environ = "*"
+invoke = "*"
+fabric = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 black = "*"

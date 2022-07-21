@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  database:
+    environment:
+      POSTGRES_DB: statistics_db
+      POSTGRES_PASSWORD: statistics_password_1
+    image: postgres:14.1
+    ports:
+      - 127.0.0.1:5432:5432/tcp
+    restart: always
+    volumes:
+      - pg_data:/var/lib/postgresql/data:rw
+volumes:
+  pg_data: {}
+  redis_data: {}

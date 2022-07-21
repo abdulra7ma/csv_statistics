@@ -2,6 +2,7 @@
 import sys
 from os.path import abspath, basename, dirname, join, normpath
 
+
 # ##### PATH CONFIGURATION ################################
 
 # fetch Django's project directory
@@ -96,10 +97,6 @@ USE_I18N = False
 # The required SECRET_KEY is fetched at the end of this file
 SECRET_FILE = normpath(join(PROJECT_ROOT, "run", "SECRET.key"))
 
-# these persons receive error notification
-ADMINS = (("your name", "your_name@example.com"),)
-MANAGERS = ADMINS
-
 
 # ##### DJANGO RUNNING CONFIGURATION ######################
 
@@ -119,6 +116,8 @@ MEDIA_URL = "/media/"
 DEBUG = False
 
 APPEND_SLASH = False
+
+SITE_ID = 1
 
 # finally grab the SECRET KEY
 try:

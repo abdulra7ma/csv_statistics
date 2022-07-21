@@ -1,0 +1,19 @@
+.DS_Store
+docs
+README.md
+.editorconfig
+.gitignore
+provisioning
+public
+
+# Django project
+**/.pytest_cache
+**/htmlcov
+**/.env
+**/celerybeat-schedule
+
+# Git
+.git/
+
+# Python
+**/__pycache__

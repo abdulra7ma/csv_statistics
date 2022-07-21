@@ -6,7 +6,7 @@ from .models import Statistics, StatisticsCSVUploadedFile
 
 @admin.register(StatisticsCSVUploadedFile)
 class StatisticsCSVUploadedFileAdmin(admin.ModelAdmin):
-    list_display = ("uuid", "created", "updated", "is_active", "file")
+    list_display = ("uuid", "created", "updated", "is_active", "file", "file_hash")
     list_filter = ("created", "updated", "is_active")
 
 

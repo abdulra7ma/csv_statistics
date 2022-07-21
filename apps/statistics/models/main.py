@@ -1,7 +1,7 @@
-from django.db import models
+import hashlib
 
 from apps.base.model.core import CoreModel
-
+from django.db import models
 from lib.constants.const import _Const
 
 
@@ -10,7 +10,8 @@ class StatisticsCSVUploadedFile(CoreModel):
     For uploaded CSV files
     """
 
-    file = models.FileField(upload_to="csv", blank=False, null=False)
+    file = models.FileField(upload_to="csv", blank=False, null=True)
+    file_hash = models.CharField(verbose_name="File Hash", max_length=_Const.LENGTH_256)
 
 
 class Statistics(CoreModel):
