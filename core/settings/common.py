@@ -49,7 +49,12 @@ DJANGO_DEFAULT_APPS = (
 
 LOCAL_APPS = ("apps.statistics",)
 
-THIRD_PARTY_APPS = ("rest_framework", "drf_yasg", "django_extensions")
+THIRD_PARTY_APPS = (
+    "rest_framework",
+    "drf_yasg",
+    "django_extensions",
+    "django_filters",
+)
 
 
 # these are the apps

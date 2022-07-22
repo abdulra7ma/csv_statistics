@@ -21,6 +21,7 @@ django-environ = "*"
 invoke = "*"
 fabric = "*"
 psycopg2 = "==2.9.3"
+django-filter = "*"
 
 [dev-packages]
 black = "*"
