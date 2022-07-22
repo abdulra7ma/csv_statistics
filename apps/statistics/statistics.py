@@ -1,3 +1,4 @@
+from django.urls import is_valid_path
 import pandas as pd
 from django.db import transaction
 
@@ -7,18 +8,26 @@ from apps.statistics.models import Statistics
 class FLightStatistics:
     def __init__(self, file_path) -> None:
         self.file = file_path
+        self.csv_headers = ["priority", "type", "aircraft", "status", "errors_count", "info_count"]
 
-        self.read_file()
+        self.flight_data = self.read_file()
 
     def read_file(self):
-        self.flight_data = pd.read_csv(self.file)
+        """
+        Read csv file and convert it to a DataFrame
+        """
+        return pd.read_csv(self.file)
 
     def run(self):
-        self.statistics_by_column("type")
-        self.statistics_by_column("aircraft")
-        self.statistics_by_column("aircraft")
+        if self.is_valid_csv_file():
+            self.statistics_by_column("type")
+            self.statistics_by_column("aircraft")
+            self.statistics_by_column("aircraft")
 
     def statistics_by_column(self, column_name):
+        """
+        Extracts statistics `column_name` related data and create Statistics Model object and save to the database
+        """
         columns_unique_values = self.flight_data[column_name].unique()
 
         with transaction.atomic():
@@ -55,3 +64,13 @@ class FLightStatistics:
                 }
 
                 Statistics.objects.create(**data)
+
+    def is_valid_csv_file(self):
+        """
+        Checks whether the give csv file is valid for the app statictics or not
+        """
+
+        if self.flight_data.columns.to_list() == self.csv_headers:
+            return True
+
+        return False
