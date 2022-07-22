@@ -37,6 +37,3 @@ fab run
 ```
 fab compose.up
 ```
-
-## Notes
-   ** The progrom UI was not that fancy as We had a limited time%
