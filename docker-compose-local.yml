@@ -10,6 +10,17 @@ services:
     restart: always
     volumes:
       - pg_data:/var/lib/postgresql/data:rw
+  web:
+    build: .
+    command: sh -c "fab django.migrate && fab d-run"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=True
+      - CORE_DATABASE_URL=psql://postgres:statistics_password_1@database:5432/statistics_db
+    depends_on:
+      - database
 volumes:
   pg_data: {}
-  redis_data: {}

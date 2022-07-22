@@ -5,18 +5,27 @@ from ._common import project_path
 
 
 @task()
-def compose_up(ctx, daemon=False):
-    with ctx.cd(project_path("docker")):
-        command = "docker-compose --file docker-compose-local.yml --project-name=quran_kg up"
+def compose_up(ctx, daemon=False, rebuild=False):
+    with ctx.cd(project_path(".")):
+        command_prefix = "docker-compose"
+        command_options = " --file docker-compose-local.yml --project-name=csv_statistics "
+        command_suffix = "up"
+
         if daemon:
-            command = f"{command} -d"
+            command_suffix += " -d "
+
+        if rebuild:
+            command_suffix += " --build "
+
+        command = command_prefix + command_options + command_suffix
+
         ctx.run(command, pty=True, replace_env=False)
 
 
 @task()
 def compose_down(ctx, volumes=False):
-    with ctx.cd(project_path("docker")):
-        command = "docker-compose --file docker-compose-local.yml --project-name=quran_kg down"
+    with ctx.cd(project_path(".")):
+        command = "docker-compose --file docker-compose-local.yml --project-name=csv_statistics down"
         if volumes:
             command = f"{command} -v"
         ctx.run(command, pty=True, replace_env=False)

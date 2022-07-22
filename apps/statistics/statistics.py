@@ -10,8 +10,6 @@ class FLightStatistics:
 
         self.read_file()
 
-        print(self.file)
-
     def read_file(self):
         self.flight_data = pd.read_csv(self.file)
 

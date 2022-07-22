@@ -17,11 +17,19 @@ class StatisticsCSVUploadedFileSerializer(serializers.ModelSerializer):
 
         if file.name.split(".")[-1].lower() not in ALLOWED_FILE_FORMATS:
             raise serializers.ValidationError(
-                detail="file format not supported please submit .",
+                detail="file format not supported please submit a valid file format.",
                 code=status.HTTP_400_BAD_REQUEST,
             )
 
         return file
+
+    def validate(self, attrs):
+        if "file" not in attrs:
+            raise serializers.ValidationError(
+                detail="file not found",
+                code=status.HTTP_400_BAD_REQUEST,
+            )
+        return super().validate(attrs)
 
     def create(self, validated_data):
         instance = super().create(validated_data)

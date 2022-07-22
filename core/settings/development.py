@@ -2,10 +2,7 @@ from datetime import datetime
 from os.path import join
 
 from .common import *
-
 from .environment import env
-
-
 
 # uncomment the following line to include i18n
 # from .i18n import *
@@ -22,13 +19,17 @@ ALLOWED_HOSTS = ["*"]
 # LOGOUT_REDIRECT_URL = "core_login"
 
 
-# ##### DATABASE CONFIGURATION ############################
+##### DATABASE CONFIGURATION ############################
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": join(PROJECT_ROOT, "run", "dev.sqlite3"),
     }
 }
+
+# DATABASES = {
+#     "default": env.db("CORE_DATABASE_URL", default="psql://postgres:awesome_password_1@database:5432/quran_kg_db")
+# }
 
 # ##### APPLICATION CONFIGURATION #########################
 

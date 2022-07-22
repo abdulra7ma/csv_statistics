@@ -9,7 +9,7 @@ public
 # Django project
 **/.pytest_cache
 **/htmlcov
-**/.env
+.env
 **/celerybeat-schedule
 
 # Git
