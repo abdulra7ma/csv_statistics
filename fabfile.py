@@ -5,11 +5,13 @@ from fabric_scripts.backend import (backend_clean_pyc, backend_run,
 from fabric_scripts.compose import compose_collection
 from fabric_scripts.djnago import django_collection
 from fabric_scripts.pip_tools import pip_collection
+from fabric_scripts.test import test_collection
 
 namespace = Collection(
     compose_collection,
     pip_collection,
     django_collection,
+    test_collection
 )
 namespace.add_task(backend_run, name="run")
 namespace.add_task(docker_backend_run, name="d-run")
