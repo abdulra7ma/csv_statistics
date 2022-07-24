@@ -1,1 +1,1 @@
-from .main import Statistics, StatisticsCSVUploadedFile
+from .main import CSVData, Statistics, StatisticsCSVUploadedFile

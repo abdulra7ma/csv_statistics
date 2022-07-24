@@ -14,6 +14,38 @@ class StatisticsCSVUploadedFile(CoreModel):
     file_hash = models.CharField(verbose_name="File Hash", max_length=_Const.LENGTH_256)
 
 
+class CSVData(CoreModel):
+    """
+    Stores data from 
+    """
+
+    priority = models.CharField(verbose_name="Priority", max_length=_Const.LENGTH_32)
+    type = models.CharField(verbose_name="Type", max_length=_Const.LENGTH_32)
+    aircraft = models.CharField(verbose_name="Aircraft", max_length=_Const.LENGTH_32)
+    status = models.CharField(verbose_name="Status", max_length=_Const.LENGTH_32)
+    _errors_count = models.IntegerField(verbose_name="Errors Count", default=0)
+    _info_count = models.IntegerField(verbose_name="Info Count", default=0)
+
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=[
+                    "type",
+                ]
+            ),
+            models.Index(
+                fields=[
+                    "aircraft",
+                ]
+            ),
+            models.Index(
+                fields=[
+                    "status",
+                ]
+            ),
+        ]
+
+
 class Statistics(CoreModel):
     """
     Defines the main attributes for a statistics object

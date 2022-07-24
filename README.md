@@ -31,16 +31,17 @@ curl --location --request POST 'http://127.0.0.1:8000/api/v1/self-service/statis
 --header 'Cookie: csrftoken=t9SuMsIvbz18aoYLfM6ZMt7PTJ9wBEKH3XRIERRGv21Acz4gkHoZ8P9eqkOsyChj' \
 --form 'file=@"machine-full-path/test_data.csv"'
 ```
+> **_NOTE:_** uploading the same file won't load any data to the database as every file has a generated hash after being uploaded to server. so if you want to load the same data to the database you got to change let bit in the file internels. 
 
-2. if the given csv file was valid than a triggered event on the server gonna generate statitistical calculation and save the output to the database. Then you gonna have the ability to request the calculated data and perform filters over it.
+1. if the given csv file was valid than a triggered event on the server gonna load the data into the database. Then all the statitistical calculation gonna happen on the run of the request
    1. request example:
       ```
       curl -X 'GET' \
-      'http://127.0.0.1:8000/api/v1/statistics/?type=Lower%20A&info_count=1252&errors_count=1252' \
+      'http://127.0.0.1:8000/api/v1/statistics/ \
       -H 'accept: application/json' \
       -H 'X-CSRFToken: NyBYCU01QcQVsBn6M853zM5xhDBItC1LLApIP03pvW4U4xq8fDlzTDvm9mgxoFg8'
       ```
-    2. response sample:
+    1. response sample:
         ```
         {
           "count": 1,
@@ -48,19 +49,35 @@ curl --location --request POST 'http://127.0.0.1:8000/api/v1/self-service/statis
           "previous": null,
           "results": [
             {
-              "aircraft": null,
+              "aircraft": "S305A",
               "status": null,
-              "type": "Lower A",
-              "info_count": 1252,
-              "errors_count": 1252,
-              "pre_legend": 0,
+              "type": null,
+              "info_count": 17,
+              "errors_count": 4,
+              "pre_legend": 2,
               "warning": 0,
               "paired_b": 0,
-              "legend": 0,
+              "legend": 4,
+              "lower_b": 0,
+              "repeat_legend": 0,
+              "upper_a": 1,
+              "lower_a": 0,
+              "paired_a": 0
+            },
+            {
+              "aircraft": "S306A",
+              "status": null,
+              "type": null,
+              "info_count": 5,
+              "errors_count": 9,
+              "pre_legend": 1,
+              "warning": 0,
+              "paired_b": 0,
+              "legend": 1,
               "lower_b": 0,
               "repeat_legend": 0,
               "upper_a": 0,
-              "lower_a": 1252,
+              "lower_a": 1,
               "paired_a": 0
             }
           ]

@@ -1,12 +1,36 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from .models import Statistics, StatisticsCSVUploadedFile
+from .models import CSVData, Statistics, StatisticsCSVUploadedFile
 
 
 @admin.register(StatisticsCSVUploadedFile)
 class StatisticsCSVUploadedFileAdmin(admin.ModelAdmin):
-    list_display = ("uuid", "created", "updated", "is_active", "file", "file_hash")
+    list_display = (
+        "uuid",
+        "created",
+        "updated",
+        "is_active",
+        "file",
+        "file_hash",
+    )
+    list_filter = ("created", "updated", "is_active")
+
+
+@admin.register(CSVData)
+class CSVDataAdmin(admin.ModelAdmin):
+    list_display = (
+        "uuid",
+        "created",
+        "updated",
+        "is_active",
+        "priority",
+        "type",
+        "aircraft",
+        "status",
+        "_errors_count",
+        "_info_count",
+    )
     list_filter = ("created", "updated", "is_active")
 
 

@@ -22,6 +22,7 @@ invoke = "*"
 fabric = "*"
 psycopg2 = "==2.9.3"
 django-filter = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 black = "*"
