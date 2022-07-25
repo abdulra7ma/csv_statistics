@@ -12,6 +12,7 @@ def backend_run(ctx):
 @task()
 def docker_backend_run(ctx):
     with ctx.cd(project_path(".")):
+        ctx.run("cp core/.env.example core/.env")
         ctx.run("WERKZEUG_DEBUG_PIN=off python manage.py runserver_plus 0.0.0.0:8000", pty=True, replace_env=False)
 
 
