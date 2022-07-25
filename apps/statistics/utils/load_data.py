@@ -9,9 +9,11 @@ def load_csv_data_to_csv_data_model(file_path) -> None:
         data = csv.reader(csv_file, delimiter=",")
         next(data)
 
-        with transaction.atomic():
-            for row in data:
-                CSVData.objects.create(
+        loaded_objects = []
+
+        for row in data:
+            loaded_objects.append(
+                CSVData(
                     priority=row[0],
                     type=row[1],
                     aircraft=row[2],
@@ -19,4 +21,6 @@ def load_csv_data_to_csv_data_model(file_path) -> None:
                     _errors_count=row[4],
                     _info_count=row[5],
                 )
-    return
+            )
+
+    return [f"'{str(obj.uuid)}'" for obj in CSVData.objects.bulk_create(loaded_objects)]
