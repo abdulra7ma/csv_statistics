@@ -8,6 +8,7 @@
     - [what i should do?](#what-i-should-do)
   - [run in dev environment](#run-in-dev-environment)
   - [Run it with docker](#run-it-with-docker)
+  - [run test files](#run-test-files)
 
 ## Setup
 1. install pipenv 
@@ -100,4 +101,10 @@ fab run
 1. docker compose up
 ```
 fab compose.up
+```
+
+## run test files
+1. run all test files in the project
+```
+fab test.run
 ```
