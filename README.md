@@ -89,22 +89,26 @@ curl --location --request POST 'http://127.0.0.1:8000/api/v1/self-service/statis
 
 1. migrate database
 ```
-fab django.migrate
+python manange.py migrate
 ```
 2. run development server
 ```
-fab run
+python manange.py runserver
 ```
 
 
 ## Run it with docker
 1. docker compose up
 ```
-fab compose.up
+docker-compose --file docker-compose-local.yml --project-name=csv_statics
 ```
 
 ## run test files
-1. run all test files in the project
+1. install dev dependencies
 ```
-fab test.run
+pipenv install --dev
+```
+2. run all test files in the project
+```
+fab pytest --cache-clear --capture=no --showlocals --verbose
 ```

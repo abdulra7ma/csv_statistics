@@ -4,30 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-python-decouple = "*"
 drf-yasg = "*"
-djangorestframework-simplejwt = "*"
 djangorestframework = "*"
-django-cors-headers = "*"
-pillow = "*"
-user-agents = "*"
-redis = "*"
-numpy = "*"
 django = "==4.0.6"
-django-extensions = "*"
-werkzeug = "*"
-pandas = "*"
 django-environ = "*"
-invoke = "*"
-fabric = "*"
 psycopg2 = "==2.9.3"
 django-filter = "*"
 django-debug-toolbar = "*"
 
 [dev-packages]
 black = "*"
-faker = "*"
-factory-boy = "*"
 pytest = "*"
 pytest-django = "*"
 

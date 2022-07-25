@@ -2,7 +2,7 @@ import os
 
 import pytest
 from apps.statistics.models import CSVData, StatisticsCSVUploadedFile
-from apps.statistics.utils._tests.file_upload import file_upload_csv
+from apps.statistics.tests.utils import file_upload_csv
 from django.urls import reverse
 from rest_framework import status
 

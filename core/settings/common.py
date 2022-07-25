@@ -52,7 +52,6 @@ LOCAL_APPS = ("apps.statistics",)
 THIRD_PARTY_APPS = (
     "rest_framework",
     "drf_yasg",
-    "django_extensions",
     "django_filters",
     "debug_toolbar",
 )

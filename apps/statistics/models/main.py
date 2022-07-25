@@ -1,8 +1,5 @@
-import hashlib
-
 from apps.base.model.core import CoreModel
 from django.db import models
-from lib.constants.const import _Const
 
 
 class StatisticsCSVUploadedFile(CoreModel):
@@ -11,7 +8,7 @@ class StatisticsCSVUploadedFile(CoreModel):
     """
 
     file = models.FileField(upload_to="csv", blank=False, null=True)
-    file_hash = models.CharField(verbose_name="File Hash", max_length=_Const.LENGTH_256)
+    file_hash = models.CharField(verbose_name="File Hash", max_length=256)
 
 
 class CSVData(CoreModel):
@@ -19,10 +16,10 @@ class CSVData(CoreModel):
     Stores data from
     """
 
-    priority = models.CharField(verbose_name="Priority", max_length=_Const.LENGTH_32)
-    type = models.CharField(verbose_name="Type", max_length=_Const.LENGTH_32)
-    aircraft = models.CharField(verbose_name="Aircraft", max_length=_Const.LENGTH_32)
-    status = models.CharField(verbose_name="Status", max_length=_Const.LENGTH_32)
+    priority = models.CharField(verbose_name="Priority", max_length=32)
+    type = models.CharField(verbose_name="Type", max_length=32)
+    aircraft = models.CharField(verbose_name="Aircraft", max_length=32)
+    status = models.CharField(verbose_name="Status", max_length=32)
     _errors_count = models.IntegerField(verbose_name="Errors Count", default=0)
     _info_count = models.IntegerField(verbose_name="Info Count", default=0)
 
@@ -51,9 +48,9 @@ class Statistics(CoreModel):
     Defines the main attributes for a statistics object
     """
 
-    aircraft = models.CharField(verbose_name="Aircraft", max_length=_Const.LENGTH_128, null=True)
-    status = models.CharField(verbose_name="Status", max_length=_Const.LENGTH_128, null=True)
-    type = models.CharField(verbose_name="Type", max_length=_Const.LENGTH_128, null=True)
+    aircraft = models.CharField(verbose_name="Aircraft", max_length=128, null=True)
+    status = models.CharField(verbose_name="Status", max_length=128, null=True)
+    type = models.CharField(verbose_name="Type", max_length=128, null=True)
     info_count = models.IntegerField(verbose_name="Info Count", default=0)
     errors_count = models.IntegerField(verbose_name="Errors Count", default=0)
     pre_legend = models.IntegerField(verbose_name="Pre legend", default=0)

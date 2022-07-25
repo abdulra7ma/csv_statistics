@@ -1,5 +1,5 @@
 from apps.statistics.models import Statistics, StatisticsCSVUploadedFile
-from apps.statistics.utils.file_hash import generate_file_hash
+from apps.statistics.api.utils import generate_file_hash
 from rest_framework import serializers, status
 
 
