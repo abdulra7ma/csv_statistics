@@ -28,7 +28,7 @@ ALLOWED_HOSTS = ["*"]
 # }
 
 DATABASES = {
-    "default": env.db("CORE_DATABASE_URL", default="psql://postgres:awesome_password_1@database:5432/quran_kg_db")
+    "default": env.db("CORE_DATABASE_URL", default="psql://postgres:statistics_password_1@127.0.0.1:5432/statistics_db")
 }
 
 # ##### APPLICATION CONFIGURATION #########################
