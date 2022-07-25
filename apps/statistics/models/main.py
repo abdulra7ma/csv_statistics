@@ -16,7 +16,7 @@ class StatisticsCSVUploadedFile(CoreModel):
 
 class CSVData(CoreModel):
     """
-    Stores data from 
+    Stores data from
     """
 
     priority = models.CharField(verbose_name="Priority", max_length=_Const.LENGTH_32)

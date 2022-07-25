@@ -16,7 +16,7 @@ def load_csv_data_to_csv_data_model(file_path) -> None:
                     type=row[1],
                     aircraft=row[2],
                     status=row[3],
-                    errors_count=row[4],
-                    info_count=row[5],
+                    _errors_count=row[4],
+                    _info_count=row[5],
                 )
     return

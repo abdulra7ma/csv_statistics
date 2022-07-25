@@ -9,6 +9,7 @@ def test_run(ctx, module=None):
     with ctx.cd(project_path(".")):
         pytest_command_args = [
             "pytest",
+            "-s",
             "--cache-clear",
             "--capture=no",
             "--showlocals",

@@ -17,8 +17,8 @@ class _CustomAPIClient(APIClient):
     """
 
     def post(self, path, data=None, format=None, content_type="application/json", follow=False, **extra):
-        if isinstance(data, (dict, list)):
-            data = json.dumps(data)
+        # if isinstance(data, (dict, list)):
+        #     data = json.dumps(data)
         response = super().post(path, data=data, format=format, content_type=content_type, follow=follow, **extra)
         return response
 
@@ -42,12 +42,5 @@ class _CustomAPIClient(APIClient):
 
 
 @pytest.fixture()
-def api_client(user_account):
-    def _api_client(auth_user=None):
-        if auth_user is None:
-            auth_user = user_account()
-        client = _CustomAPIClient()
-        client.force_authenticate(auth_user)
-        return client
-
-    return _api_client
+def api_client():
+    return _CustomAPIClient()

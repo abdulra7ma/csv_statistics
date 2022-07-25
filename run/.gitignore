@@ -15,6 +15,9 @@ static/*
 # except the README
 !static/README
 
+!tests_files
+!tests_files/*
+
 # do NOT ignore the media directory
 !media
 # but everything inside it
