@@ -1,11 +1,8 @@
-import json
 import os
 
 import pytest
 from apps.statistics.models import CSVData, StatisticsCSVUploadedFile
 from apps.statistics.utils._tests.file_upload import file_upload_csv
-from apps.statistics.utils.file_hash import generate_file_hash
-from django.core.files.base import ContentFile, File
 from django.urls import reverse
 from rest_framework import status
 

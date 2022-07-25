@@ -1,4 +1,5 @@
-from apps.statistics.api.serializers import StatisticsCSVUploadedFileSerializer, StatisticsSerializer
+from apps.statistics.api.serializers import (
+    StatisticsCSVUploadedFileSerializer, StatisticsSerializer)
 from apps.statistics.models import CSVData
 from django.db.models import Count, Q, Sum
 from django_filters import rest_framework as filters
@@ -18,24 +19,47 @@ class StatisticsView(generics.ListAPIView):
     filter_backends = (filters.DjangoFilterBackend,)
 
     def get_queryset(self):
-        results = []
-
-        fields = ["type", "aircraft", "status"]
-        for field in fields:
-            results += list(
-                CSVData.objects.values(field).annotate(
-                    info_count=Sum("_info_count"),
-                    errors_count=Sum("_errors_count"),
-                    pre_legend=Count("type", filter=Q(type="PreLegend")),
-                    warning=Count("type", filter=Q(type="Warning")),
-                    paired_b=Count("type", filter=Q(type="Paired B")),
-                    legend=Count("type", filter=Q(type="Legend")),
-                    lower_b=Count("type", filter=Q(type="Lower B")),
-                    repeat_legend=Count("type", filter=Q(type="Repeat Legend")),
-                    upper_a=Count("type", filter=Q(type="Upper A")),
-                    lower_a=Count("type", filter=Q(type="Lower A")),
-                    paired_a=Count("type", filter=Q(type="Paired A")),
-                )
-            )
+        results = CSVData.objects.raw(
+            """
+            SELECT
+                1 as uuid,
+                "statistics_csvdata"."aircraft",
+                "statistics_csvdata"."type",
+                "statistics_csvdata"."status",
+                SUM("statistics_csvdata"."_info_count") AS "info_count",
+                SUM("statistics_csvdata"."_errors_count") AS "errors_count",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'PreLegend') AS "pre_legend",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Warning') AS "warning",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Paired B') AS "paired_b",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Legend') AS "legend",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Lower B') AS "lower_b",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Repeat Legend') AS "repeat_legend",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Upper A') AS "upper_a",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Lower A') AS "lower_a",
+                COUNT("statistics_csvdata"."type") FILTER (
+                WHERE
+                "statistics_csvdata"."type" = 'Paired A') AS "paired_a" 
+            FROM
+                "statistics_csvdata" 
+            GROUP BY
+                GROUPING SETS ("statistics_csvdata"."aircraft", "statistics_csvdata"."type", "statistics_csvdata"."status")
+            """
+        )
 
         return results
