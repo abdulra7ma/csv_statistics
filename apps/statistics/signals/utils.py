@@ -49,7 +49,12 @@ def get_query(ids):
                 "statistics_csvdata" 
             WHERE "statistics_csvdata"."uuid" in ({", ".join(ids)})
             GROUP BY
-                GROUPING SETS ("statistics_csvdata"."aircraft", "statistics_csvdata"."type", "statistics_csvdata"."status")
+                GROUPING SETS (
+                    ("statistics_csvdata"."aircraft"),
+                    ("statistics_csvdata"."type"), 
+                    ("statistics_csvdata"."status"),
+                    ()
+                );
         """
 
 
